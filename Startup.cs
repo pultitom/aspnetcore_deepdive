@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace ConsoleApplication
 {
@@ -9,11 +10,15 @@ namespace ConsoleApplication
        public void ConfigureServices(IServiceCollection services) {
            services.AddMvc();
        }
-       public void Configure(IApplicationBuilder app) {
-            app.Map("/mvc", mvcapp => {
-                mvcapp.UseMvcWithDefaultRoute();
-            });
-            app.Run(c => c.Response.WriteAsync("Hi."));
+       public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory) {
+
+           loggerFactory.AddConsole();
+
+           app.Map("/mvc", mvcapp => {
+               mvcapp.UseMvcWithDefaultRoute();
+           });
+           
+           app.Run(c => c.Response.WriteAsync("Hi."));
        }
 
    }
