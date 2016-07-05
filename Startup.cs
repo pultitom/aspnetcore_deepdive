@@ -16,7 +16,11 @@ namespace ConsoleApplication
 
            app.UseStaticFiles();
 
-           app.UseStatusCodePagesWithRedirects("/{0}.html");
+           app.UseStatusCodePagesWithReExecute("/error");
+
+           app.Map("/error", errorApp => {
+               errorApp.Run(async r => await r.Response.WriteAsync("There was an error. Status code " + r.Response.StatusCode));
+           });
 
            app.Map("/mvc", mvcapp => {
                mvcapp.UseMvcWithDefaultRoute();
