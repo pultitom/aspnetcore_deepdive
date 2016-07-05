@@ -14,9 +14,14 @@ namespace ConsoleApplication
 
            loggerFactory.AddConsole();
 
+           app.UseStaticFiles();
+
+           app.UseStatusCodePagesWithRedirects("/{0}.html");
+
            app.Map("/mvc", mvcapp => {
                mvcapp.UseMvcWithDefaultRoute();
            });
+           
            
            app.Run(c => c.Response.WriteAsync("Hi."));
        }
