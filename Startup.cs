@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -22,6 +23,7 @@ namespace ConsoleApplication
                mvcapp.UseMvcWithDefaultRoute();
            });
            
+           app.UseMiddleware<WelcomePageMiddleware>();
            
            app.Run(c => c.Response.WriteAsync("Hi."));
        }
