@@ -3,7 +3,8 @@
   "buildOptions": {
     "debugType": "portable",
     "emitEntryPoint": true,
-    "copyToOutput": "public"
+    "copyToOutput": "public",
+    "preserveCompilationContext": true
   },
   "dependencies": {
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",

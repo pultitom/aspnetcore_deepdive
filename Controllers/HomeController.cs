@@ -1,9 +1,16 @@
+using System;
+using Microsoft.AspNetCore.Mvc;
+
 namespace ConsoleApplication
 {
-   public class HomeController
+   public class HomeController : Controller
    {
-       public string Index() {
-           return "Hello from Index";
+       public IActionResult Index() {
+           return View();
+       }
+
+       public string IndexPost() {
+           return "received a post";
        }
    } 
 }
