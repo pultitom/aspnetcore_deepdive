@@ -12,6 +12,7 @@ namespace ConsoleApplication
             Console.WriteLine("Hello World!");
             var host = new WebHostBuilder()
                         .UseKestrel()
+                        .UseWebRoot("public")
                         .UseContentRoot(Directory.GetCurrentDirectory())
                         .UseStartup<Startup>()
                         .Build();

@@ -9,8 +9,9 @@ namespace ConsoleApplication
            return View();
        }
 
-       public string IndexPost() {
-           return "received a post";
+       [HttpGet]
+       public IActionResult IndexApi() {
+           return Ok(new { SomeKey = 1, value = "some value" });
        }
    } 
 }
