@@ -1,7 +1,9 @@
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
@@ -10,8 +12,19 @@ namespace ConsoleApplication
 {
     class Startup
     {
+        public IConfiguration Configuration { get; set; }
+        
+        public Startup() {
+            var builder = new ConfigurationBuilder()
+                            .SetBasePath(Directory.GetCurrentDirectory())
+                            .AddJsonFile("mysettings.json", optional: true, reloadOnChange: true);
+            
+            Configuration = builder.Build();
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton(provider => Configuration);
             services.AddMvc().AddJsonOptions(options => {
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
@@ -35,9 +48,7 @@ namespace ConsoleApplication
                 mvcapp.UseMvcWithDefaultRoute();
             });
 
-            app.UseMiddleware<WelcomePageMiddleware>();
-
-            app.Run(c => c.Response.WriteAsync("Hi."));
+            app.Run(c => c.Response.WriteAsync(Configuration["defaultHello"]));
         }
 
     }
