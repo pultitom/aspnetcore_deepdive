@@ -1,7 +1,12 @@
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using ConsoleApplication.Models;
+using ConsoleApplication.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
-namespace ConsoleApplication
+namespace ConsoleApplication.Controllers
 {
    public class HomeController : Controller
    {
@@ -11,6 +16,7 @@ namespace ConsoleApplication
            _appName = configuration["appName"];
        }
        
+       [HttpGet]
        public IActionResult Index() {
            ViewBag.AppName = _appName;
            return View();
@@ -19,6 +25,11 @@ namespace ConsoleApplication
        [HttpGet]
        public IActionResult IndexApi() {
            return Ok(new { SomeKey = 1, value = "some value", appName = _appName });
+       }
+
+       [HttpGet("[controller]/joke")]
+       public async Task<RandomJokeModel> GetJoke() {
+           return await MyHttpClient<RandomJokeModel>.GetAsyncResponse("http://api.icndb.com/jokes/random");
        }
    } 
 }
