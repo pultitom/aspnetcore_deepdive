@@ -1,4 +1,4 @@
-namespace ConsoleApplication.Models
+namespace WebApp1.Models
 {
     public class RandomJokeModel
     {

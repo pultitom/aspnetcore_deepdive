@@ -1,12 +1,13 @@
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using ConsoleApplication.Models;
-using ConsoleApplication.Services;
+using WebApp1.Models;
+using WebApp1.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Domain.Models;
 
-namespace ConsoleApplication.Controllers
+namespace WebApp1.Controllers
 {
    public class HomeController : Controller
    {
@@ -24,7 +25,12 @@ namespace ConsoleApplication.Controllers
 
        [HttpGet]
        public IActionResult IndexApi() {
-           return Ok(new { SomeKey = 1, value = "some value", appName = _appName });
+           var contact = new MyContact();
+           contact.Name = _appName;
+           contact.Email = "mytestmail@mytestmail.com";
+           contact.Phone = "112";
+
+           return Ok(contact);
        }
 
        [HttpGet("[controller]/joke")]
