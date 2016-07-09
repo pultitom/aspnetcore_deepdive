@@ -23,7 +23,7 @@ namespace WebApp1.Controllers
         }
 
         // http://localhost:5000/mvc/api/contacts/1
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public IActionResult Get(int id)
         {
             var contact = this._dbContext.Contacts.FirstOrDefault(e => e.Id == id);
