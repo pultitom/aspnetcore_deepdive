@@ -3,8 +3,11 @@
   "buildOptions": {
     "debugType": "portable",
     "emitEntryPoint": true,
-    "copyToOutput": "public",
+    "copyToOutput": [ "public", "mysettings.json" ],
     "preserveCompilationContext": true
+  },
+  "publishOptions": {
+    "includeFiles": [ "mysettings.json" ]
   },
   "dependencies": {
     "Domain": "1.0.0-*",

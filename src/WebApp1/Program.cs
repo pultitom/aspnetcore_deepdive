@@ -13,6 +13,7 @@ namespace WebApp1
             var host = new WebHostBuilder()
                         .UseKestrel()
                         .UseWebRoot("public")
+                        .UseUrls("http://*:5000")
                         .UseContentRoot(Directory.GetCurrentDirectory())
                         .UseStartup<Startup>()
                         .Build();
