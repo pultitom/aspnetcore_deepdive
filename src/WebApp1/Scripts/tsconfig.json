@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "noImplicitAny": false,
+        "sourceMap": false,
+        "outDir": "../public/js"//,
+       // "outFile": "../public/js/main.js"
+    },
+    "exclude": [
+        "node_modules"
+    ],
+    "files": [
+        "test.ts"
+    ]
+}
