@@ -9,6 +9,9 @@
   "publishOptions": {
     "includeFiles": [ "mysettings.json" ]
   },
+  "tooling": {
+    "defaultNamespace": "WebApi1"
+  },
   "dependencies": {
     "Domain": "1.0.0-*",
     "DataPersistence" : "1.0.0-*",
@@ -24,7 +27,8 @@
     "Microsoft.EntityFrameworkCore.Tools": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    }
+    },
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore" : "1.0.0"
   },
   "frameworks": {
     "netcoreapp1.0": {
