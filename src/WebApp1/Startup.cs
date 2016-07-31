@@ -26,7 +26,8 @@ namespace WebApp1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton(provider => Configuration);
-            services.AddDbContext<MyDbContext>(options => options.UseInMemoryDatabase());
+            services.AddDbContext<MyDbContext>(options =>
+                options.UseSqlite("Data Source=MyDatabase.db"));
             services.AddMvc().AddJsonOptions(options => {
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });

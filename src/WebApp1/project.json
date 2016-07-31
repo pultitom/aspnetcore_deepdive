@@ -20,7 +20,11 @@
     "Newtonsoft.Json": "9.0.1",
     "Microsoft.Extensions.Configuration": "1.0.0",
     "Microsoft.Extensions.Configuration.Json": "1.0.0",
-    "System.Net.Http": "4.1.0"
+    "System.Net.Http": "4.1.0",
+    "Microsoft.EntityFrameworkCore.Tools": {
+      "version": "1.0.0-preview2-final",
+      "type": "build"
+    }
   },
   "frameworks": {
     "netcoreapp1.0": {
@@ -31,6 +35,15 @@
         }
       },
       "imports": "dnxcore50"
+    }
+  },
+  "tools": {
+    "Microsoft.EntityFrameworkCore.Tools": {
+      "version": "1.0.0-preview2-final",
+      "imports": [
+        "portable-net45+win8+dnxcore50",
+        "portable-net45+win8"
+      ]
     }
   }
 }

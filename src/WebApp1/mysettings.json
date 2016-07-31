@@ -1,4 +1,7 @@
 {
+    "ConnectionStrings": {
+        "DefaultConnection": "Data Source=MyDatabase.db"
+    },
     "appName": "My app",
     "defaultHello": "Hi."
 }
