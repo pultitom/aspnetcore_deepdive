@@ -1,8 +1,10 @@
 using System.IO;
 using DataPersistence.Contexts;
+using Domain.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +30,11 @@ namespace WebApp1
             services.AddSingleton(provider => Configuration);
             services.AddDbContext<MyDbContext>(options =>
                 options.UseSqlite("Data Source=MyDatabase.db"));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<MyDbContext>()
+                .AddDefaultTokenProviders();
+
             services.AddMvc().AddJsonOptions(options => {
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
@@ -38,11 +45,19 @@ namespace WebApp1
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
+                //app.UseBrowserLink();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
             }
 
             loggerFactory.AddConsole();
 
             app.UseStaticFiles();
+
+            app.UseIdentity();
 
             app.Map("/mvc", mvcapp =>
             {
