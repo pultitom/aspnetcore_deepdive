@@ -22,6 +22,7 @@ namespace WebApp1
                             .SetBasePath(Directory.GetCurrentDirectory())
                             .AddJsonFile("mysettings.json", optional: true, reloadOnChange: true);
             
+            builder.AddEnvironmentVariables();
             Configuration = builder.Build();
         }
 

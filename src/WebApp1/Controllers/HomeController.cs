@@ -5,15 +5,16 @@ namespace WebApp1.Controllers
 {
     public class HomeController : Controller
    {
-       private readonly string _appName;
+       private IConfiguration _configuration;
 
        public HomeController(IConfiguration configuration) {
-           _appName = configuration["appName"];
+           _configuration = configuration;
        }
        
        [HttpGet]
        public IActionResult Index() {
-           ViewBag.AppName = _appName;
+           ViewBag.AppName = _configuration["appName"];
+           ViewBag.Environment = _configuration["ASPNETCORE_ENVIRONMENT"];
            return View();
        }
    } 
